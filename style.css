@@ -11,18 +11,27 @@
 
 
 /* Feel free to change any of the styling below!*/
-html,
+html {
+    background-color: yellow;
+}
 body {
     margin: 0;
     padding: 0;
+    background-color: orange;
 }
-
+.background{
+    background-color: orange;
+}
+p.stuff {
+    color:rgb(0, 0, 82)
+}
 /* Style the body with a background color or image if desired */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     text-align: center;
     padding: 20px;
+
 }
 
 /* Style the title of your story */
@@ -30,29 +39,9 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    background-color: orange;
 }
 
-/* Style the story opening container */
-.story-opening {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Style the story image */
-.story-opening img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-/* Style the story opening message */
-.story-opening h1 {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
 
 /* Style the buttons container */
 .buttons {
