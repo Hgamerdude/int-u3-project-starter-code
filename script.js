@@ -1,4 +1,4 @@
-// Declare variables below to save the different divs of your story.
+// LOADS O VARIABLES
 let body = document.querySelector("body");
 let header = document.querySelector("h1");
 let recent = document.querySelector("h3");
@@ -23,12 +23,7 @@ let lost = false;
 
 
 
-// 1. Press the button on the webpage to change it up! Take notice of what happens.
-// - What do you think .style does?
-//It allows styles to change through javascript.
-// 2. Try the following:
-// - Make it so that the colors are different than what's used.
-// - Try using a hex color code.
+//SEE ENEMY HP EVENT
 main.addEventListener("click", function() {
     if(health < 0){
         lost = true;
@@ -71,11 +66,7 @@ main.addEventListener("click", function() {
     }
 });
 
-// When you're ready to make event handlers, uncomment the code below. 
-//  - Then fill in the blanks with the correct variables.
-
-
-// INSERT_VARIABLE.addEventListener('click', function(){
+// ATTACK EVENT
 attackButton.addEventListener("click", function(){
     if(health < 0){
         lost = true;
@@ -118,9 +109,8 @@ else{
 }
 
 })
-// });
 
-// INSERT_VARIABLE.addEventListener('click', function(){
+// DEFEND EVENT
 defendButton.addEventListener("click", function(){
     if(health < 0){
         lost = true;
@@ -135,9 +125,3 @@ recent.innerHTML = "You could have lost " + possibleL + " health / Your enemy co
 }
 
 })
-// });
-
-
-// INSERT_VARIABLE.addEventListener('click', function(){
-
-// });
