@@ -18,12 +18,15 @@ body {
     margin: 0;
     padding: 0;
     background-color: orange;
+    font-family: 'Courier New', Courier, monospace;
 }
 .background{
     background-color: orange;
 }
-p.stuff {
-    color:rgb(0, 0, 82)
+p{
+    color:rgb(0, 0, 0);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: x-large;
 }
 /* Style the body with a background color or image if desired */
 body {
@@ -43,11 +46,6 @@ body {
 }
 
 
-/* Style the buttons container */
-.buttons {
-    margin: 20px;
-}
-
 /* Style the option buttons */
 button {
     font-size: 16px;
@@ -65,34 +63,19 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Style the screens for option one and option two */
-.option-one-screen,
-.option-two-screen,
-.option-one-end,
-.option-two-end {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
-}
 
-/* Style the images in the screens */
-.option-one-screen img,
-.option-two-screen img,
-.option-one-end img,
-.option-two-end img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+.duckimage{
+    position: relative;
+    animation: mymove 3s infinite;
 }
-
-/* Style the text in the screens */
-.option-one-screen h1,
-.option-two-screen h1,
-.option-one-end h1,
-.option-two-end h1 {
-    font-size: 20px;
-    margin-bottom: 20px;
+@keyframes mymove {
+0% {
+    left: 100px;
+}
+50%{
+    left: -100px;
+}
+100%{
+    left:100px;
+}
 }

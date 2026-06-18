@@ -30,31 +30,40 @@ let lost = false;
 // - Make it so that the colors are different than what's used.
 // - Try using a hex color code.
 main.addEventListener("click", function() {
+    if(health < 0){
+        lost = true;
+        duckImage.src = "assets/ducks.jpeg";
+    }
+
     if(!lost){
         fight.innerHTML = "You are fighting an enemy with " + num + " hitpoints";
-        console.log(num + " health");
+        console.log(num + " enemy health");
+        console.log(health + " your health");
         attackButton.innerHTML = "Attack";
         defendButton.innerHTML = "Defend";
         image.style.width = "0.001px";
         image.style.height = "0.001px";
         direct.innerHTML = "";
         if(num > 15){
-            duckImage.src = "assets/Bigduck.jpeg"
+            duckImage.src = "assets/Bigduck.jpeg";
         }
         else{
             if(num>12){
-                duckImage.src = "assets/MarioDuck.jpeg"
+                duckImage.src = "assets/MarioDuck.jpeg";
             }
             else{
                 if(num>9){
-                    duckImage.src = "assets/SpiderDuck.jpeg"
+                    duckImage.src = "assets/SpiderDuck.jpeg";
                 }
                 else{
                     if(num>5){
-                        duckImage.src = "assets/PunkDuck.jpeg"
+                        duckImage.src = "assets/PunkDuck.jpeg";
                     }
                     else{
-                        duckImage.src = "assets/LilDuck.jpeg"
+                        duckImage.src = "assets/LilDuck.jpeg";
+                        if(num<0){
+                            duckImage.src = "assets/ducks.jpeg";
+                        }
                     }
                 }
             }
@@ -68,16 +77,30 @@ main.addEventListener("click", function() {
 
 // INSERT_VARIABLE.addEventListener('click', function(){
 attackButton.addEventListener("click", function(){
-console.log(num + " health");
-if(!lost){
-num -= (Math.random() * 5);
+    if(health < 0){
+        lost = true;
+        duckImage.src = "assets/ducks.jpeg";
+    }
+
+    console.log(num + " enemy health");
+    console.log(health + " your health");
+    if(!lost){
+
+    num -= (Math.random() * 5);
+
 health -= (Math.random() * 6);
+if(health < 0){
+        lost = true;
+        duckImage.src = "assets/ducks.jpeg";
+    }
+
 if(health < 0){
     recent.innerHTML = "You have lost :(";
     recent.style.color = "red";
     recent.style.backgroundColor = "#515151";
     body.style.backgroundColor = "#8f8f8f";
     header.style.backgroundColor = "#8f8f8f";
+    duckImage.src = "assets/ducks.jpeg";
     lost = true;
 }
 else{
@@ -99,7 +122,11 @@ else{
 
 // INSERT_VARIABLE.addEventListener('click', function(){
 defendButton.addEventListener("click", function(){
-if(!lost){
+    if(health < 0){
+        lost = true;
+        duckImage.src = "assets/ducks.jpeg";
+    }
+    if(!lost){
 possibleW = (Math.random() * 5);
 possibleL = (Math.random() * 6);
 
