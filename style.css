@@ -67,15 +67,17 @@ button:hover {
 .duckimage{
     position: relative;
     animation: mymove 3s infinite;
+    height: 0.001px;
+    width: 0.001px;
 }
 @keyframes mymove {
 0% {
-    left: 100px;
+    left: 75px;
 }
 50%{
-    left: -100px;
+    left: -75px;
 }
 100%{
-    left:100px;
+    left:75px;
 }
 }
