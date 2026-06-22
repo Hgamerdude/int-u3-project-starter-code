@@ -59,6 +59,10 @@ button {
     transition: background-color 0.3s ease;
 }
 
+.attack, .defend {
+    visibility:hidden;
+}
+
 button:hover {
     background-color: #0056b3;
 }
@@ -67,8 +71,7 @@ button:hover {
 .duckimage{
     position: relative;
     animation: mymove 3s infinite;
-    height: 0.001px;
-    width: 0.001px;
+    visibility: hidden;
 }
 @keyframes mymove {
 0% {

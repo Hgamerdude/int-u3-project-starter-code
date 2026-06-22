@@ -20,12 +20,23 @@ let wins = 0;
 let winsDisplay = document.querySelector(".wins");
 let lost = false;
 
+//Start
 
+//Alert
+main.addEventListener("click", function(){
+    alert("Hit “Attack” or “Defend” to progress in your duels with ducks and try to rack up as many wins you can before you lose.");
+}
+)
+
+//To Portfolio
 
 //SEE ENEMY HP EVENT
 main.addEventListener("click", function() {
-    duckImage.style.height ="230px";
-    duckImage.style.width ="230px";
+    main.innerHTML = "Click for Enemy HP update!";
+    duckImage.style.visibility ="visible";
+    duckImage.style.visibility ="visible";
+    attackButton.style.visibility ="visible";
+    defendButton.style.visibility ="visible";
     if(health < 0){
         lost = true;
         duckImage.src = "assets/ducks.jpeg";
@@ -132,8 +143,8 @@ defendButton.addEventListener("click", function(){
         duckImage.style.transform = "scale(2)";
     }
     if(!lost){
-possibleW = (Math.random() * 5);
-possibleL = (Math.random() * 6);
+possibleW = (Math.random() * 5).toFixed(3);
+possibleL = (Math.random() * 6).toFixed(3);
 
 recent.innerHTML = "You could have lost " + possibleL + " health / Your enemy could have lost " + possibleW + " health";
 
@@ -203,8 +214,8 @@ else{
         duckImage.style.transform = "scale(2)";
     }
     if(!lost){
-possibleW = (Math.random() * 5);
-possibleL = (Math.random() * 6);
+possibleW = (Math.random() * 5).toFixed(3);
+possibleL = (Math.random() * 6).toFixed(3);
 
 recent.innerHTML = "You could have lost " + possibleL + " health / Your enemy could have lost " + possibleW + " health";
 
