@@ -24,7 +24,7 @@ let nameTooLong = false;
 
 function updateDuckImage() {
     if (num > 15) {
-        mainImage.src = "assets/Bigduck.jpeg";
+        mainImage.src = "assets/BigDuck.jpeg";
     } 
     else if (num > 12) {
         mainImage.src = "assets/MarioDuck.jpeg";
@@ -60,7 +60,7 @@ main.addEventListener("click", function() {
             input.style.visibility = "hidden";
             header3.innerHTML = "Choose your path";
 
-            nameTooLong = input.value.length > 8;
+            nameTooLong = input.value.length > 7;
 
             attackButton.style.visibility = "visible";
             defendButton.style.visibility = "visible";
