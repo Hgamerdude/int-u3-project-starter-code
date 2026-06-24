@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>U3 Project</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="script.js"></script>
-    </head>
-    <body class="background">
-        <header class="directions">Welcome to the duck battle, begin by fighting some enemies</header>
+
+<head>
+    <title>U3 Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="background">
+
+    <div>
+        <h1></h1>
+        <img class="mainImage" src="" alt="enemy" style="visibility:hidden;">
         <br>
-        <img class="photo" src="assets/WelcomeFella.png" alt="welcome">
+        <button class="middleButton">Adventure</button>
+        <input style="visibility:hidden;">
+        <p class="fight"></p>
+    </div>
+
+    <div>
         <br>
-        <p class="stuff">Wins: <span class="wins">0</span></p>
-        <br>
-        <img class="photo" src="assets/ChooseANumber.png" alt="Hit It">
-        <br>
-        <img class="duckimage" alt="duck" src="#"></img>
-        <br>
-        <button class="mainButton">Adventure</button>
-        <p class="ranNum"></p>
-    </body>
-    <body>
-        <br>
-        <h2 class="FIGHT"></h2>
-        <h3 class="RECENTATTACK"></h3>
-        <button class="attack"></button>
-        <button class="defend"></button>
-    </body>
+        <h2 class="header2"></h2>
+        <h3 class="header3"></h3>
+        <button class="attack" style="visibility:hidden;">Attack</button>
+        <button class="defend" style="visibility:hidden;">Defend</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="keyboard.js"></script>
+
+</body>
 </html>

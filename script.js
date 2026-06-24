@@ -1,224 +1,177 @@
-// LOADS O VARIABLES
-let body = document.querySelector("body");
-let header = document.querySelector("h1");
-let recent = document.querySelector("h3");
-let main = document.querySelector(".mainButton");
-let ranNum = document.querySelector(".ranNum");
-let fight = document.querySelector(".FIGHT");
-let image = document.querySelector(".photo");
-let direct = document.querySelector(".directions");
-let duckImage = document.querySelector(".duckimage");
+let body = document.querySelector(".background");
+let header1 = document.querySelector("h1");
+let header3 = document.querySelector("h3");
 
+let main = document.querySelector(".middleButton");
+let ranNum = document.querySelector(".ranNum");
+
+let mainImage = document.querySelector(".mainImage");
+let input = document.querySelector("input");
+let fight = document.querySelector(".fight");
 
 let attackButton = document.querySelector(".attack");
 let defendButton = document.querySelector(".defend");
+let winsDisplay = document.querySelector(".wins");
+
+let place = 0;
 let num = (Math.random() * 15) + 5;
 let health = 20;
-let possibleW;
-let possibleL;
 let wins = 0;
-let winsDisplay = document.querySelector(".wins");
 let lost = false;
+let duck = false;
+let battleStarted = false;
+let nameTooLong = false;
 
-//Start
-
-//Alert
-main.addEventListener("click", function(){
-    alert("Hit “Attack” or “Defend” to progress in your duels with ducks and try to rack up as many wins you can before you lose.");
+function updateDuckImage() {
+    if (num > 15) {
+        mainImage.src = "assets/Bigduck.jpeg";
+    } 
+    else if (num > 12) {
+        mainImage.src = "assets/MarioDuck.jpeg";
+    } 
+    else if (num > 9) {
+        mainImage.src = "assets/SpiderDuck.jpeg";
+    } 
+    else if (num > 5) {
+        mainImage.src = "assets/PunkDuck.jpeg";
+    } 
+    else {
+        mainImage.src = "assets/LilDuck.jpeg";
+    }
 }
-)
 
-//To Portfolio
+function updateFightDisplay() {
+    fight.innerHTML = "Your HP: " + health.toFixed(2) + " / Enemy HP: " + num.toFixed(2);
+}
 
-//SEE ENEMY HP EVENT
+header1.innerHTML = "What's your name?";
+input.style.visibility = "visible";
+attackButton.style.visibility = "hidden";
+defendButton.style.visibility = "hidden";
+main.innerHTML = "Submit";
+
 main.addEventListener("click", function() {
-    main.innerHTML = "Click for Enemy HP update!";
-    duckImage.style.visibility ="visible";
-    duckImage.style.visibility ="visible";
-    attackButton.style.visibility ="visible";
-    defendButton.style.visibility ="visible";
-    if(health < 0){
-        lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        duckImage.style.transform = "scale(2)";
-        fight.innerHTML = "You WERE fighting an enemy with " + num.toFixed(3) + " hitpoints";
-        fight.style.color = "#080841"
+
+    if (lost) return;
+
+    if (place === 0) {
+        if (input.value.length > 0) {
+            header1.innerHTML = "Welcome " + input.value;
+            input.style.visibility = "hidden";
+            header3.innerHTML = "Choose your path";
+
+            nameTooLong = input.value.length > 8;
+
+            attackButton.style.visibility = "visible";
+            defendButton.style.visibility = "visible";
+
+            attackButton.innerHTML = "Fight Ducks";
+            defendButton.innerHTML = "Computer Science";
+
+            main.style.visibility = "hidden";
+            place = 1;
+        }
+        return;
     }
 
-    if(!lost){
-        fight.innerHTML = "You are fighting an enemy with " + num.toFixed(3) + " hitpoints";
-        console.log(num + " enemy health");
-        console.log(health + " your health");
-        attackButton.innerHTML = "Attack";
-        defendButton.innerHTML = "Defend";
-        image.style.width = "0.001px";
-        image.style.height = "0.001px";
-        direct.innerHTML = "";
-        if(num > 15){
-            duckImage.src = "assets/Bigduck.jpeg";
-        }
-        else{
-            if(num>12){
-                duckImage.src = "assets/MarioDuck.jpeg";
-            }
-            else{
-                if(num>9){
-                    duckImage.src = "assets/SpiderDuck.jpeg";
-                }
-                else{
-                    if(num>5){
-                        duckImage.src = "assets/PunkDuck.jpeg";
-                    }
-                    else{
-                        duckImage.src = "assets/LilDuck.jpeg";
-                        if(num<0){
-                            duckImage.src = "assets/ducks.jpeg";
-                            duckImage.style.transform = "scale(2)";
-                            fight.innerHTML = "You WERE fighting an enemy with " + num.toFixed(3) + " hitpoints";
-                        }
-                    }
-                }
-            }
-        }
+    if (place === 2 && duck) {
+        battleStarted = true;
+
+        mainImage.style.visibility = "visible";
+        updateFightDisplay();
+
+        updateDuckImage();
+
+        main.style.visibility = "hidden";
     }
 });
 
-// ATTACK EVENT
-attackButton.addEventListener("click", function(){
-    if(health < 0){
+attackButton.addEventListener("click", function() {
+
+    if (lost) return;
+
+    if (place === 1) {
+        duck = true;
+        place = 2;
+
+        header3.innerHTML = "You chose to fight ducks";
+
+        attackButton.innerHTML = "Attack";
+        defendButton.innerHTML = "Defend";
+
+        main.style.visibility = "visible";
+        main.innerHTML = "Start Battle";
+
+        return;
+    }
+
+    if (!duck || !battleStarted) return;
+
+    if (nameTooLong) {
         lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        duckImage.style.transform = "scale(2)";
-        fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
+        header3.innerHTML = "Your name confused the ducks beyond repair. Immediate defeat.";
+        mainImage.style.visibility = "visible";
+        mainImage.src = "assets/ducks.jpeg";
+        mainImage.style.transform = "scale(1.6)";
+        updateFightDisplay();
+        return;
     }
 
-    console.log(num + " enemy health");
-    console.log(health + " your health");
-    if(!lost){
+    let damageToPlayer = Math.random() * 6;
+    let damageToEnemy = Math.random() * 5;
 
-health -= (Math.random() * 6);
-    num -= (Math.random() * 5);
-if(health < 0){
+    health -= damageToPlayer;
+    num -= damageToEnemy;
+
+    if (health <= 0) {
+
         lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        duckImage.style.transform = "scale(2)";
-        fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
+
+        if (num < 0) {
+            header3.innerHTML = "TIE BATTLE / You lost the war (enemy also collapsed)" + "<br> You had " + wins + " wins!";
+        } 
+        else {
+            header3.innerHTML = "You have lost :(";
+        }
+
+        mainImage.style.visibility = "visible";
+        mainImage.src = "assets/ducks.jpeg";
+        mainImage.style.transform = "scale(1.6)";
+        updateFightDisplay()
+        return;
     }
 
-if(health < 0){
-    recent.innerHTML = "You have lost :(";
-    recent.style.color = "red";
-    recent.style.backgroundColor = "#515151";
-    body.style.backgroundColor = "#8f8f8f";
-    header.style.backgroundColor = "#8f8f8f";
-    duckImage.src = "assets/ducks.jpeg";
-    fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
-    duckImage.style.transform = "scale(2)";
-    lost = true;
-}
+    if (num <= 0) {
+        wins += 1;
 
-else{
-    if(num < 0){
-    recent.innerHTML = "You have won!";
-    health = 20;
-    num = (Math.random() * 15) + 5 + wins;
-    wins += 1;
-    fight.innerHTML = "You are fighting an enemy with " + num.toFixed(3) + " hitpoints";
-    winsDisplay.innerHTML = wins;
-}
-else{
-    recent.innerHTML = "You have " + health.toFixed(3) + " health remaining / Your enemy has " + num.toFixed(3) + " health";
-}
-}
-}
+        health = 20;
+        num = (Math.random() * 15) + 5 + wins;
 
-})
+        updateDuckImage();
 
-// DEFEND EVENT
-defendButton.addEventListener("click", function(){
-    if(health < 0){
-        lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
-        duckImage.style.transform = "scale(2)";
-    }
-    if(!lost){
-possibleW = (Math.random() * 5).toFixed(3);
-possibleL = (Math.random() * 6).toFixed(3);
-
-recent.innerHTML = "You could have lost " + possibleL + " health / Your enemy could have lost " + possibleW + " health";
-
-}
-
-})
-
-document.addEventListener("keydown", event =>{
-    console.log(event.key);
-    
-    if (event.key === 'a') {
-        console.log("A")
-        if(health < 0){
-        lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        duckImage.style.transform = "scale(2)";
-        fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
+        header3.innerHTML = "You have won! Next challenger approaches.";
+        fight.innerHTML = "Your HP: " + health.toFixed(2) + " / New enemy HP: " + num.toFixed(2);
+        return;
     }
 
-    console.log(num + " enemy health");
-    console.log(health + " your health");
-    if(!lost){
+    updateDuckImage();
+    header3.innerHTML = "You: " + health.toFixed(2) + " HP / Enemy: " + num.toFixed(2) + " HP";
+    updateFightDisplay()
+});
 
-health -= (Math.random() * 6);
-    num -= (Math.random() * 5);
-if(health < 0){
-        lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        duckImage.style.transform = "scale(2)";
-        fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
+defendButton.addEventListener("click", function() {
+
+    if (lost) return;
+
+    if (place === 1) {
+        document.body.innerHTML = `<h1>Computer Science</h1><a href="https://code.visualstudio.com/" target="_blank">Download VS Code</a>`;
+        return;
     }
 
-if(health < 0){
-    recent.innerHTML = "You have lost :(";
-    recent.style.color = "red";
-    recent.style.backgroundColor = "#515151";
-    body.style.backgroundColor = "#8f8f8f";
-    header.style.backgroundColor = "#8f8f8f";
-    duckImage.src = "assets/ducks.jpeg";
-    fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
-    duckImage.style.transform = "scale(2)";
-    lost = true;
-}
+    if (!duck || !battleStarted) return;
 
-else{
-    if(num < 0){
-    recent.innerHTML = "You have won!";
-    health = 20;
-    num = (Math.random() * 15) + 5 + wins;
-    wins += 1;
-    fight.innerHTML = "You are fighting an enemy with " + num.toFixed(3) + " hitpoints";
-    winsDisplay.innerHTML = wins;
-}
-else{
-    recent.innerHTML = "You have " + health.toFixed(3) + " health remaining / Your enemy has " + num.toFixed(3) + " health";
-}
-}
-}
+    let possibleW = Math.random() * 5;
+    let possibleL = Math.random() * 6;
 
-    }
-    if (event.key === 'd') {
-        console.log("D")
-    if(health < 0){
-        lost = true;
-        duckImage.src = "assets/ducks.jpeg";
-        fight.innerHTML = "You WERE fighting an enemy with " + Math.abs(num.toFixed(3)) + " hitpoints";
-        duckImage.style.transform = "scale(2)";
-    }
-    if(!lost){
-possibleW = (Math.random() * 5).toFixed(3);
-possibleL = (Math.random() * 6).toFixed(3);
-
-recent.innerHTML = "You could have lost " + possibleL + " health / Your enemy could have lost " + possibleW + " health";
-
-    }
-}
+    header3.innerHTML = "You could lose " + possibleL.toFixed(2) + " HP / Enemy could lose " + possibleW.toFixed(2) + " HP";
 });
