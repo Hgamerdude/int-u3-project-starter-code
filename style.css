@@ -26,6 +26,9 @@ body {
 p{
     color:rgb(0, 0, 0);
     font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large
+}
+h3{
     font-size: x-large;
 }
 /* Style the body with a background color or image if desired */
@@ -39,7 +42,7 @@ body {
 
 /* Style the title of your story */
 .title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 20px;
     background-color: orange;
@@ -48,7 +51,7 @@ body {
 
 /* Style the option buttons */
 button {
-    font-size: 16px;
+    font-size: 28px;
     padding: 10px 20px;
     margin: 10px;
     background-color: #0073ed;
@@ -87,5 +90,7 @@ button:hover {
 }
 
 input{
-    visibility: hidden;
+    font-size: 30px;
+    height: 24px;
+    width: 121px;
 }
